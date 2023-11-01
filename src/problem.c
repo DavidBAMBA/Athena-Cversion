@@ -1,1 +1,1 @@
-prob/orszag-tang.c
+prob/rt.c
