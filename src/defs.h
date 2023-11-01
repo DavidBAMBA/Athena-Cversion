@@ -20,10 +20,10 @@
  *  (user modified via configure) */
 
 /* Version identifier when configure was last run */
-#define CONFIGURE_DATE "Wed Nov  1 10:39:52 -05 2023"
+#define CONFIGURE_DATE "Wed Nov  1 13:42:51 -05 2023"
 
 /* Problem generator with which Athena is compiled */
-#define A_PROBLEM "rt"
+#define A_PROBLEM "2Dks"
 
 /* HYDRO or MHD */
 #define MHD
@@ -62,20 +62,20 @@
 #define NO_STS
 
 /* special relativity */
-#define NEWTONIAN
+#define SPECIAL_RELATIVITY
 
 /* order of spatial reconstruction: FIRST_ORDER,
  * SECOND_ORDER_CHAR, SECOND_ORDER_PRIM, THIRD_ORDER_CHAR, THIRD_ORDER_PRIM */
-#define THIRD_ORDER_CHAR
+#define THIRD_ORDER_PRIM
 
 /* flux type
  * ROE_FLUX, HLLE_FLUX, HLLC_FLUX, HLLD_FLUX, FORCE_FLUX, EXACT_FLUX,
  * TWO_SHOCK_FLUX */
-#define ROE_FLUX
+#define HLLD_FLUX
 
 /* unsplit integrator:
  * CTU_INTEGRATOR or VL_INTEGRATOR */
-#define CTU_INTEGRATOR
+#define VL_INTEGRATOR
 
 /* Real: DOUBLE_PREC or SINGLE_PREC */
 #define DOUBLE_PREC
