@@ -1,0 +1,5 @@
+# Athena history dump for level=0 domain=0 volume=2.000000e-03
+#   [1]=time      [2]=dt         [3]=mass       [4]=total E    [5]=x1 Mom.    [6]=x2 Mom.    [7]=x3 Mom.   [8]=Gamma      [9]=x1-KE      [10]=x2-KE      [11]=x3-KE     [12]=Press     [13]=x0-ME     [14]=x1-ME     [15]=x2-ME     [16]=x3-ME     [17]=bsq       [18]=T^00_EM
+#
+   0.000000e+00   2.500000e-03   1.200000e+00   2.076227e+00   0.000000e+00   3.373532e-17   0.000000e+00   1.460538e+00   1.800000e-01   6.155377e-01   1.800000e-01   4.775133e-02   0.000000e+00   0.000000e+00   0.000000e+00   7.332467e-01   7.332467e-01   5.333767e-01
+   2.500000e-01   2.500000e-03           -nan           -nan           -nan           -nan           -nan           -nan           -nan           -nan           -nan   2.000000e+00           -nan           -nan           -nan           -nan           -nan           -nan
