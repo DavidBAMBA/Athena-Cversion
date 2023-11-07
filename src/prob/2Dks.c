@@ -144,5 +144,5 @@ void Userwork_after_loop(MeshS *pM)
 
 static Real grav_pot2(const Real x1, const Real x2, const Real x3)
 {
-  return 1000.0*x2;
+  return 0.1*x2;
 }

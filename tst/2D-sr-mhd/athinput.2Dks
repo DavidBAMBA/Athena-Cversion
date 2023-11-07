@@ -7,70 +7,60 @@ config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=h
 
 <job>
 problem_id      = 2Dks      # problem ID: basename of output filenames
-maxout          = 4         # Output blocks number from 1 -> maxout
+maxout          = 3         # Output blocks number from 1 -> maxout
 num_domains     = 1         # number of Domains in Mesh
 
 <output1>
 out_fmt = hst               # History data dump
-dt      = 0.001             # time increment between outputs
+dt      = 0.005
 
 <output2>
 out_fmt = bin               # bin data dump
-dt      = 0.01              # time increment between outputs
+dt      = 0.1             # time increment between outputs
 
 <output3>
 out_fmt = vtk
-dt      = 0.002
+dt      = 0.1
 type    = slice
 out     = d
 id      = d
 dmin    = 1.0e-4
-dmax    = 0.05
-palette = rainbow
-
-<output4>
-out_fmt = ppm
-dt      = 0.002
-type    = slice
-out     = p
-id      = d
-dmin    = 1.0e-4
-dmax    = 0.5
+dmax    = 10.0
 palette = rainbow
 
 <time>
 cour_no         = 0.5      # The Courant, Friedrichs, & Lewy (CFL) Number
-nlim            = 10000     # cycle limit
-tlim            = 10.0       # time limit
+nlim            = 10000    # cycle limit
+tlim            = 10.0    # time limit
 
 
 <domain1>
 level           = 0         # refinement level this Domain (root=0)
-Nx1             = 20       # Number of zones in X1-direction
-x1min           = -0.1      # minimum value of X1
-x1max           = 0.1    # maximum value of X1
+Nx1             = 512      # Number of zones in X1-direction
+x1min           = -0.05      # minimum value of X1
+x1max           = 0.05       # maximum value of X1
 bc_ix1          = 4         # inner-I (X1) boundary flag
 bc_ox1          = 4         # outer-I (X1) boundary flag
 
-Nx2             = 20       # Number of zones in X2-direction
-x2min           = -0.05      # minimum value of X2
-x2max           = 0.05     # maximum value of X2
-bc_ix2          = 4         # inner-I (X2) boundary flag
-bc_ox2          = 4         # outer-I (X2) boundary flag
+Nx2             = 1024       # Number of zones in X2-direction
+x2min           = -0.1      # minimum value of X2
+x2max           = 0.1     # maximum value of X2
+bc_ix2          = 1         # inner-I (X2) boundary flag
+bc_ox2          = 1         # outer-I (X2) boundary flag
 
 Nx3             = 1       # Number of zones in X3-direction
-x3min           = -0.1      # minimum value of X3
-x3max           = 0.1       # maximum value of X3
+x3min           = -0.05      # minimum value of X3
+x3max           = 0.05       # maximum value of X3
 bc_ix3          = 4         # inner-I (X3) boundary flag
 bc_ox3          = 4         # outer-I (X3) boundary flag
 
 
 <problem>
-gamma   = 1.333333333333     # gamma = C_p/C_v
+gamma = 1.333333333333     # gamma = C_p/C_v
 
-amp   =  9.9e-7
-sigma = 100.0
+amp   = 9.53e-7    #v1=vakv
+sigma = 10.0
 delta = 0.01
-nx    = 0
+nx    = 1
 ny    = 1
-nz    = 0
+nz    = 1
