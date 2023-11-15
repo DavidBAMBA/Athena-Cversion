@@ -20,7 +20,7 @@
  *  (user modified via configure) */
 
 /* Version identifier when configure was last run */
-#define CONFIGURE_DATE "Wed Nov  8 18:39:35 -05 2023"
+#define CONFIGURE_DATE "Tue Nov 14 15:55:42 -05 2023"
 
 /* Problem generator with which Athena is compiled */
 #define A_PROBLEM "2Dks"
@@ -87,7 +87,7 @@
 #define NO_WRITE_GHOST_CELLS
 
 /* MPI parallelism: MPI_PARALLEL or NO_MPI_PARALLEL */
-#define NO_MPI_PARALLEL
+#define MPI_PARALLEL
 
 /* H-correction: H_CORRECTION or NO_H_CORRECTION */
 #define NO_H_CORRECTION
