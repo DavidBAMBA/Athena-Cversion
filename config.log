@@ -366,7 +366,7 @@ ac_cv_prog_gcc_traditional=no
 ## ----------------- ##
 
 ACCURACY='THIRD_ORDER_PRIM'
-A_CONFIGURE_DATE='Tue Nov 14 15:55:42 -05 2023'
+A_CONFIGURE_DATE='Wed Nov 15 00:40:32 -05 2023'
 CC='gcc'
 CFLAGS='-g -O2'
 COMPILER_OPTS='-O3'
