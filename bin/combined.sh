@@ -7,7 +7,7 @@ output_dir="output_combined"
 mkdir -p "$output_dir"
 
 # Número total de archivos a combinar
-total_files=197  # Ajusta esto según la cantidad real de archivos
+total_files=229  # Ajusta esto según la cantidad real de archivos
 
 # Ruta al programa join_vtk
 join_vtk="./a.out"
