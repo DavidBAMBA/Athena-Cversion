@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Directorio de salida para los archivos combinados
-output_dir="output_combineds5"
+output_dir="output_combineds2"
 
 # Crear directorio de salida si no existe
 mkdir -p "$output_dir"
 
 # Número total de archivos a combinar
-total_files=201  # Ajusta esto según la cantidad real de archivos
+total_files=351  # Ajusta esto según la cantidad real de archivos
 
 # Ruta al programa join_vtk
 join_vtk="./a.out"
