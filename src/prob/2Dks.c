@@ -7,6 +7,9 @@
 #include "prototypes.h"
 
 static Real grav_pot2(const Real x1, const Real x2, const Real x3);
+static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j, const int k);
+static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const int k);
+static Real hst_Lorentz(const GridS *pG, const int i, const int j, const int k);
 
 /*------------------------------------------------------*/
 /* Problem Setup */
@@ -85,7 +88,10 @@ void problem(DomainS *pDomain) {
  *  * Use special boundary condition routines.  In 2D, gravity is in the
  *   * y-direction, so special boundary conditions needed for x2
  *   */
-  
+  dump_history_enroll(hst_Lorentz, "<Bx>");
+  dump_history_enroll(hst_ThermalEnergy, "<Bx>");
+  dump_history_enroll(hst_MagneticEnergyDensity, "<Bx>");
+
 
   StaticGravPot = grav_pot2;
   return;
