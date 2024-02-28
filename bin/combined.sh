@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Directorio de salida para los archivos combinados
-output_dir="output_combineds2"
+output_dir="output_combined"
 
 # Crear directorio de salida si no existe
 mkdir -p "$output_dir"
 
 # Número total de archivos a combinar
-total_files=351  # Ajusta esto según la cantidad real de archivos
+total_files=200  # Ajusta esto según la cantidad real de archivos
 
 # Ruta al programa join_vtk
 join_vtk="./a.out"
@@ -20,14 +20,14 @@ for ((file_number=0; file_number<=total_files; file_number++)); do
     temp_file_list=()
 
     # Primero, añadir el archivo de id0 que tiene un formato diferente
-    file_id0="id0/2Dks.${file_index}.d.vtk"
+    file_id0="id0/2Dks.${file_index}.vtk"
     if [ -f "$file_id0" ]; then
         temp_file_list+=("$file_id0")
     fi
 
     # Ahora, añadir los otros archivos que siguen un patrón diferente
-    for ((dir_num=1; dir_num<=15; dir_num++)); do
-        file="id${dir_num}/2Dks-id${dir_num}.${file_index}.d.vtk"
+    for ((dir_num=1; dir_num<=13; dir_num++)); do
+        file="id${dir_num}/2Dks-id${dir_num}.${file_index}.vtk"
         if [ -f "$file" ]; then
             temp_file_list+=("$file")
         fi
