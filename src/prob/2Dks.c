@@ -85,6 +85,7 @@ void problem(DomainS *pDomain) {
  *  * Use special boundary condition routines.  In 2D, gravity is in the
  *   * y-direction, so special boundary conditions needed for x2
  *   */
+  
 
   StaticGravPot = grav_pot2;
   return;
@@ -136,6 +137,7 @@ void Userwork_after_loop(MeshS *pM)
 {
 }
 
+
 /*=========================== PRIVATE FUNCTIONS ==============================*/
 
 /*! \fn static Real grav_pot2(const Real x1, const Real x2, const Real x3)
@@ -146,3 +148,30 @@ static Real grav_pot2(const Real x1, const Real x2, const Real x3)
 {
   return 0.01*x2;
 }
+
+static Real hst_Lorentz(const GridS *pG, const int i, const int j, const int k)
+{
+  Real W = Cons_to_Prim (&(pG->U[k][j][i]));
+  Real lorentz_factor = pG->U[k][j][i].d/W.d;
+
+  return lorentz_factor;
+}
+
+static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const int k)
+{
+    Real W = Cons_to_Prim (&(pG->U[k][j][i]))
+    Real U_th = 3*W.P
+    
+    return U_th;
+}
+
+static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j, const int k)
+{
+    Real W = Cons_to_Prim (&(pG->U[k][j][i]))
+
+    Real U_b = 0.5 * (SQR(W.B1c) + SQR(W.B2c));
+
+    return U_b;
+}
+
+
