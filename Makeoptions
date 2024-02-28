@@ -15,8 +15,8 @@ MACHINE = default
 
 #-------------------  default definitions  -------------------------------------
 
-CC  = gcc
-LDR = gcc
+CC  = gcc -std=gnu99
+LDR = gcc -std=gnu99
 OPT = -O3
 CUSTLIBS =
 MPIINC =
