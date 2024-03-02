@@ -246,7 +246,7 @@ void dump_history(MeshS *pM, OutputS *pOut)
               scal[mhst] += dVol*pG->U[k][j][i].M3;
 
               mhst++;
-              scal[mhst] += dVol*SQR(g);
+              scal[mhst] += dVol*g;
               mhst++;
               scal[mhst] += dVol*SQR(g*W.V1);
               mhst++;
@@ -277,7 +277,7 @@ void dump_history(MeshS *pM, OutputS *pOut)
               mhst++;
               scal[mhst] += dVol*bz*bz;
               mhst++;
-              scal[mhst] += dVol*b2;
+              scal[mhst] += dVol*Bmag2;
               mhst++;
               scal[mhst] += dVol*(Bmag2*(1.0 - 0.5*g_2) - SQR(vB) / 2.0);
 

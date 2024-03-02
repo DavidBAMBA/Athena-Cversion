@@ -9,7 +9,9 @@
 static Real grav_pot2(const Real x1, const Real x2, const Real x3);
 static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j, const int k);
 static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const int k);
-static Real hst_Lorentz(const GridS *pG, const int i, const int j, const int k);
+static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k);
+static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k);
+
 
 /*------------------------------------------------------*/
 /* Problem Setup */
@@ -88,9 +90,10 @@ void problem(DomainS *pDomain) {
  *  * Use special boundary condition routines.  In 2D, gravity is in the
  *   * y-direction, so special boundary conditions needed for x2
  *   */
-  dump_history_enroll(hst_Lorentz, "<Bx>");
-  dump_history_enroll(hst_ThermalEnergy, "<Bx>");
-  dump_history_enroll(hst_MagneticEnergyDensity, "<Bx>");
+  dump_history_enroll(hst_Lorentz1, "<Gam-p>");
+  dump_history_enroll(hst_Lorentz2, "<Gam-C>");
+  dump_history_enroll(hst_ThermalEnergy, "<Uth>");
+  dump_history_enroll(hst_MagneticEnergyDensity, "<Ub>");
 
 
   StaticGravPot = grav_pot2;
@@ -128,6 +131,7 @@ void problem_read_restart(MeshS *pM, FILE *fp)
 
 ConsFun_t get_usr_expr(const char *expr)
 {
+  if(strcmp(expr,"Bsqr")==0) return hst_MagneticEnergyDensity;
   return NULL;
 }
 
@@ -155,29 +159,44 @@ static Real grav_pot2(const Real x1, const Real x2, const Real x3)
   return 0.01*x2;
 }
 
-static Real hst_Lorentz(const GridS *pG, const int i, const int j, const int k)
+static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k)
 {
-  Real W = Cons_to_Prim (&(pG->U[k][j][i]));
+  PrimS W;
+  W = Cons_to_Prim (&(pG->U[k][j][i]));
   Real lorentz_factor = pG->U[k][j][i].d/W.d;
 
   return lorentz_factor;
 }
 
+static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k)
+{
+  Real v1 = pG->U[k][j][i].M1/pG->U[k][j][i].d;
+  Real v2 = pG->U[k][j][i].M2/pG->U[k][j][i].d;
+  Real v3 = pG->U[k][j][i].M3/pG->U[k][j][i].d;
+  Real v_squared = SQR(v1) + SQR(v2) + SQR(v3);
+  Real g = 1.0 / sqrt( 1.0- v_squared );
+  return g;
+}
+
 static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const int k)
 {
-    Real W = Cons_to_Prim (&(pG->U[k][j][i]))
-    Real U_th = 3*W.P
+    PrimS W;
+    W = Cons_to_Prim (&(pG->U[k][j][i]));
+    Real U_th = 3*W.P;
     
     return U_th;
 }
 
 static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j, const int k)
 {
-    Real W = Cons_to_Prim (&(pG->U[k][j][i]))
+    PrimS W;
+    W = Cons_to_Prim (&(pG->U[k][j][i]));
 
-    Real U_b = 0.5 * (SQR(W.B1c) + SQR(W.B2c));
+    Real U_b =  SQR(W.B1c) + SQR(W.B2c);
 
     return U_b;
 }
+
+
 
 
