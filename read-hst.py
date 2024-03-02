@@ -25,16 +25,16 @@ df = pd.read_csv(path_csv)
 
 c = 300000000
 time = df['time'].to_numpy()
-gamma = df['Gamma'].to_numpy() 
-U_th = 3*df['Press'].to_numpy()* c
-U_b = df['T00_EM'].to_numpy() * 4*np.pi*10e-7 * (1/c**2)
+gamma = df['Gamma'].to_numpy()
+U_th = df['Press'].to_numpy() *c
+U_b = df['bsq'].to_numpy()* 4*np.pi*10e-7 * (4)
 
 # Crear una figura y un conjunto de subgráficas
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 12), sharex=True)
 
 ax1.plot(time, gamma, linestyle='-', color='b')
 ax1.set_ylabel('<Γ>')
-#ax3.set_yscale('log')
+ax1.set_yscale('log')
 
 ax2.plot(time, U_b, linestyle='-', color='r')
 ax2.set_ylabel('<U_b>')
