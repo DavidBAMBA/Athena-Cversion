@@ -4,6 +4,7 @@
 #include "defs.h"
 #include "athena.h"
 #include "globals.h"
+#include "string.h"
 #include "prototypes.h"
 
 static Real grav_pot2(const Real x1, const Real x2, const Real x3);

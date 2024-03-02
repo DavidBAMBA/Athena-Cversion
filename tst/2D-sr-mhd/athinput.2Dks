@@ -33,13 +33,13 @@ tlim            = 10.0    # time limit
 
 <domain1>
 level           = 0         # refinement level this Domain (root=0)
-Nx1             = 100      # Number of zones in X1-direction
+Nx1             = 524      # Number of zones in X1-direction
 x1min           = -0.05      # minimum value of X1
 x1max           = 0.05       # maximum value of X1
 bc_ix1          = 4         # inner-I (X1) boundary flag
 bc_ox1          = 4         # outer-I (X1) boundary flag
 
-Nx2             = 200       # Number of zones in X2-direction
+Nx2             = 1024       # Number of zones in X2-direction
 x2min           = -0.1      # minimum value of X2
 x2max           = 0.1     # maximum value of X2
 bc_ix2          = 1         # inner-I (X2) boundary flag
