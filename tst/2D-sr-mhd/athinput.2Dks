@@ -7,7 +7,7 @@ config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=h
 
 <job>
 problem_id      = 2Dks      # problem ID: basename of output filenames
-maxout          = 3         # Output blocks number from 1 -> maxout
+maxout          = 10         # Output blocks number from 1 -> maxout
 num_domains     = 1         # number of Domains in Mesh
 
 <output1>
@@ -17,29 +17,103 @@ dt      = 0.01
 
 <output2>
 out_fmt = vtk
-dt      = 0.05
+dt      = 9.0
 type    = slice
-out     = v-z-p
-id      = v-z
+out     = d
+id      = d9
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+<output3>
+out_fmt = vtk
+dt      = 9.0
+type    = slice
+out     = p_rho
+id      = p_rho
 usr_expr_flag = 1
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+
+<output4>
+out_fmt = vtk
+dt      = 9.0
+type    = slice
+out     = mag
+id      = mag
+usr_expr_flag = 1
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+<output5>
+out_fmt = vtk
+dt      = 9.0
+type    = slice
+out     = B3c
+id      = BX
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+<output6>
+out_fmt = vtk
+dt      = 9.0
+type    = slice
+out     = velocity
+id      = velocity
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+<output7>
+out_fmt = vtk
+dt      = 0.01
+type    = slice
+out     = d
+id      = d
 dmin    = 1.0e-5
 dmax    = 100.0
 palette = rainbow
 
-<output2>
+
+<output8>
 out_fmt = vtk
-dt      = 0.05
+dt      = 0.01
 type    = slice
-out     = vz
-id      = v2
-usr_expr_flag = 1
+out     = G
+id      = G
+dmin    = 1.0e-8
+dmax    = 100.0
+palette = rainbow
+
+<output9>
+out_fmt = vtk
+dt      = 9.0
+type    = slice
+out     = V2
+id      = vz
 dmin    = 1.0e-5
 dmax    = 100.0
 palette = rainbow
+
+<output10>
+out_fmt = vtk
+dt      = 0.01
+type    = slice
+out     = Bsqr
+id      = Bsqr
+usr_expr_flag = 1
+dmin    = 1.0e-8
+dmax    = 1e5
+palette = rainbow
+
 
 <time>
 cour_no         = 0.5      # The Courant, Friedrichs, & Lewy (CFL) Number
-nlim            = 100000    # cycle limit
+nlim            = 110000    # cycle limit
 tlim            = 10.0    # time limit
 
 

@@ -13,7 +13,9 @@ static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const i
 static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k);
 static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k);
 
-static Real Vz(const GridS *pG, const int i, const int j, const int k);
+static Real P_rho(const GridS *pG, const int i, const int j, const int k);
+static Real magnetization(const GridS *pG, const int i, const int j, const int k);
+
 
 
 
@@ -136,7 +138,8 @@ void problem_read_restart(MeshS *pM, FILE *fp)
 ConsFun_t get_usr_expr(const char *expr)
 {
   if(strcmp(expr,"Bsqr")==0) return hst_MagneticEnergyDensity;
-  if(strcmp(expr,"v-z")==0) return Vz;
+  if(strcmp(expr,"p_rho")==0) return P_rho;
+  if(strcmp(expr,"mag")==0) return magnetization;
   return NULL;
 }
 
@@ -197,21 +200,35 @@ static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j,
     PrimS W;
     W = Cons_to_Prim (&(pG->U[k][j][i]));
 
-    Real U_b =  SQR(W.B1c) + SQR(W.B2c);
+    Real U_b =  SQR(W.B1c) + SQR(W.B2c) + SQR(W.B3c);
 
     return U_b;
 }
 
-static Real Vz(const GridS *pG, const int i, const int j, const int k)
+
+
+
+static Real P_rho(const GridS *pG, const int i, const int j, const int k)
 {
     PrimS W;
     W = Cons_to_Prim (&(pG->U[k][j][i]));
 
-    Real vz =  W.V2;
+    Real pth =  W.P/W.d;
 
-    return vz;
+    return pth;
 }
 
+
+static Real magnetization(const GridS *pG, const int i, const int j, const int k)
+{
+    PrimS W;
+    W = Cons_to_Prim (&(pG->U[k][j][i]));
+    
+    Real Bmag =  SQR(W.B1c) + SQR(W.B2c) + SQR(W.B3c);
+    Real pth =  W.Bmag/W.d;
+
+    return pth;
+}
 
 
 
