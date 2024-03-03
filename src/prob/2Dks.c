@@ -96,7 +96,6 @@ void problem(DomainS *pDomain) {
   dump_history_enroll(hst_ThermalEnergy, "<Uth>");
   dump_history_enroll(hst_MagneticEnergyDensity, "<Ub>");
 
-
   StaticGravPot = grav_pot2;
   return;
 }
@@ -133,6 +132,7 @@ void problem_read_restart(MeshS *pM, FILE *fp)
 ConsFun_t get_usr_expr(const char *expr)
 {
   if(strcmp(expr,"Bsqr")==0) return hst_MagneticEnergyDensity;
+  if(strcmp(expr,"v-z")==0) return Vz;
   return NULL;
 }
 
@@ -196,6 +196,16 @@ static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j,
     Real U_b =  SQR(W.B1c) + SQR(W.B2c);
 
     return U_b;
+}
+
+static Real Vz(const GridS *pG, const int i, const int j, const int k)
+{
+    PrimS W;
+    W = Cons_to_Prim (&(pG->U[k][j][i]));
+
+    Real vz =  W.V2;
+
+    return vz;
 }
 
 

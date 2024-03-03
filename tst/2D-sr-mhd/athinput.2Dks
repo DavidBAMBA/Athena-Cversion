@@ -7,19 +7,31 @@ config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=h
 
 <job>
 problem_id      = 2Dks      # problem ID: basename of output filenames
-maxout          = 2         # Output blocks number from 1 -> maxout
+maxout          = 3         # Output blocks number from 1 -> maxout
 num_domains     = 1         # number of Domains in Mesh
 
 <output1>
 out_fmt = hst               # History data dump
 dt      = 0.01
 
+
 <output2>
 out_fmt = vtk
 dt      = 0.05
 type    = slice
-out     = Bsqr
-id      = Bsqr
+out     = v-z-p
+id      = v-z
+usr_expr_flag = 1
+dmin    = 1.0e-5
+dmax    = 100.0
+palette = rainbow
+
+<output2>
+out_fmt = vtk
+dt      = 0.05
+type    = slice
+out     = vz
+id      = v2
 usr_expr_flag = 1
 dmin    = 1.0e-5
 dmax    = 100.0
