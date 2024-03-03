@@ -7,7 +7,7 @@ import re
 import pandas as pd
 
 # Path to the VTK files
-directory = '/home/yo/Documents/output_combined/spect-outputs'
+directory = '/home/yo/Documents/Athena-Cversion/bin/output_combined'
 vtk_files = glob.glob(directory + '/combined_*.vtk')
 
 # Function to extract the timestep from the filename
@@ -21,8 +21,8 @@ def filename_to_time(filename):
         return None
 
 # Parameters
-ny = 512  
-nz = 1024 
+ny = 512
+nz = 918
 Ly = 0.1
 Lz = 0.2
 
@@ -38,7 +38,9 @@ for vtk_file in sorted(vtk_files, key=filename_to_time):
 
         # Read the mesh from the VTK file
         mesh = pv.read(vtk_file)
-        U_b = mesh['bsqr'] 
+        print(mesh.point_data.keys())
+
+        U_b = mesh['Bsqr'] 
         U_b_2d = U_b.reshape(nz, ny)
 
         # Calculate the integral of b^2 over the domain

@@ -4,7 +4,6 @@ import glob
 import matplotlib.pyplot as plt
 from scipy.integrate import simps
 import re  
-import pandas as pd
 
 # Path to the VTK files
 directory = '/home/yo/Documents/Athena-Cversion/bin'
@@ -26,11 +25,11 @@ nz = 1024
 Ly = 0.1
 Lz = 0.2
 
-# Lists to store time and integrated magnetic energy
+# Lists to store time and total energy for each timestep
 times = []  
-total_magnetic_energy = []
+total_energy_per_timestep = []
 
-# Sort files by time and process each one
+# Process each file
 for vtk_file in sorted(vtk_files, key=filename_to_time):
     time = filename_to_time(vtk_file)
     if time is not None:
@@ -38,16 +37,24 @@ for vtk_file in sorted(vtk_files, key=filename_to_time):
 
         # Read the mesh from the VTK file
         mesh = pv.read(vtk_file)
-        U_b = mesh['bsqr'] 
+        U_b = mesh['G']  # Assuming 'G' is the quantity you want to integrate
         U_b_2d = U_b.reshape(nz, ny)
 
-        # Calculate the integral of b^2 over the domain
-        bdoty = np.zeros(nz)
+        # Integrate b^2 over the domain
         dy = Ly / ny
-        for ii in range(nz):
-            bdoty[ii] = simps(U_b_2d[ii,:], dx=dy) / Ly
         dz = Lz / nz
+        total_energy = np.trapz([np.trapz(U_b_2d[ii, :], dx=dy) for ii in range(nz)], dx=dz)
+        total_energy_per_timestep.append(total_energy)
 
-        # Total magnetic energy for this timestep
-        total_energy = simps(bdoty, dx=dz)
-        total_magnetic_energy.append(total_energy)
+# Calculate the average energy over all timesteps
+average_energy = np.mean(total_energy_per_timestep)
+
+# Plotting the result
+plt.figure(figsize=(10, 6))
+plt.plot(times, total_energy_per_timestep, label='Energy per Timestep')
+plt.hlines(average_energy, xmin=min(times), xmax=max(times), colors='r', linestyles='dashed', label='Average Energy')
+plt.xlabel('Time')
+plt.ylabel('Total Magnetic Energy')
+plt.title('Total Magnetic Energy Over Time')
+plt.legend()
+plt.show()
