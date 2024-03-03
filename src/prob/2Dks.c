@@ -225,7 +225,7 @@ static Real magnetization(const GridS *pG, const int i, const int j, const int k
     W = Cons_to_Prim (&(pG->U[k][j][i]));
     
     Real Bmag =  SQR(W.B1c) + SQR(W.B2c) + SQR(W.B3c);
-    Real pth =  W.Bmag/W.d;
+    Real pth =  Bmag/W.d;
 
     return pth;
 }
