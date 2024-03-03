@@ -24,13 +24,13 @@ with open(path_csv, 'w') as csv_file:
 df = pd.read_csv(path_csv)
 
 c = 300000000
-time = df['time'].to_numpy()
-gamma = df['Gamma'].to_numpy() 
-U_th = df['U_th'].to_numpy() +1
-U_b = df['U_b'].to_numpy()/2 
+time = df['time'].to_numpy() 
+gamma = df['Gam-c'].to_numpy() *10 -1
+U_th = df['U_th'].to_numpy() * 10
+U_b = df['bsq'].to_numpy()/2 *10
 
 # Crear una figura y un conjunto de subgráficas
-fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 12), sharex=True)
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(6, 8), sharex=True)
 
 ax3.plot(time, gamma, linestyle='-', color='b')
 ax3.set_ylabel('<Γ>')
