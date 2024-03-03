@@ -13,6 +13,10 @@ static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const i
 static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k);
 static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k);
 
+static Real Vz(const GridS *pG, const int i, const int j, const int k);
+
+
+
 
 /*------------------------------------------------------*/
 /* Problem Setup */
