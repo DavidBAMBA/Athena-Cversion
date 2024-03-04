@@ -178,11 +178,10 @@ static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k)
 
 static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k)
 {
-  Real v1 = pG->U[k][j][i].M1/pG->U[k][j][i].d;
-  Real v2 = pG->U[k][j][i].M2/pG->U[k][j][i].d;
-  Real v3 = pG->U[k][j][i].M3/pG->U[k][j][i].d;
-  Real v_squared = SQR(v1) + SQR(v2) + SQR(v3);
-  Real g = 1.0 / sqrt( 1.0- v_squared );
+  PrimS W;
+  W = Cons_to_Prim (&(pG->U[k][j][i]));
+  Real v_squared = SQR(W.V1) + SQR(W.V2) + SQR(W.V3);
+  Real g = 1.0 / sqrt( 1.0 - v_squared );
   return g;
 }
 
@@ -200,7 +199,7 @@ static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j,
     PrimS W;
     W = Cons_to_Prim (&(pG->U[k][j][i]));
 
-    Real U_b =  SQR(W.B1c) + SQR(W.B2c) + SQR(W.B3c);
+    Real U_b = (SQR(W.B1c) + SQR(W.B2c) + SQR(W.B3c)) / 2.0 ;
 
     return U_b;
 }
