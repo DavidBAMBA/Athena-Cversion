@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import glob
 
 # Reemplace esto con la ruta a su archivo VTK
-vtk_file_path = '/home/yo/Documents/Athena-Cversion/bin/output_combined/combined_0200.vtk'
+vtk_file_path = '/home/yo/Documents/Athena-Cversion/results/results-ATHV2/output_combined_vz/combined_0002.vtk'  
+
 
 # Leer el archivo VTK
 mesh = pv.read(vtk_file_path)
@@ -17,7 +18,7 @@ print("\nCell Data Keys:")
 print(mesh.cell_data.keys())
 
 # Extraer la velocidad en la dirección z (V3)
-velocity_z = mesh.point_data['v3']
+velocity_z = mesh['vz']
 
 # Calcular la velocidad máxima y mínima en z
 max_vz = np.max(velocity_z)

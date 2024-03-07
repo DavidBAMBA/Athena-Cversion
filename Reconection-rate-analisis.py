@@ -22,7 +22,7 @@ def filename_to_time(filename):
     match = re.search(r'combined_(\d+).vtk', filename)
     if match:
         # Convert the timestep number to an integer, then to real time
-        time_step = 0.02
+        time_step = 0.01
         return int(match.group(1)) * time_step
     else:
         return None
@@ -34,11 +34,11 @@ Ly = 0.1
 Lz = 0.2
 
 # Lists to store time and integrated magnetic energy
-times = []  
 total_magnetic_energy1 = []
 total_magnetic_energy2 = []
 total_magnetic_energy3 = []
 total_magnetic_energy4 = []
+times = []  
 
 # Sort files by time and process each one
 for vtk_file in sorted(vtk_files1, key=filename_to_time):
@@ -63,6 +63,7 @@ for vtk_file in sorted(vtk_files1, key=filename_to_time):
         # Total magnetic energy for this timestep
         total_energy = simps(bdoty, dx=dz)
         total_magnetic_energy1.append(total_energy)
+times = []  
 
 for vtk_file in sorted(vtk_files2, key=filename_to_time):
     time = filename_to_time(vtk_file)
@@ -86,6 +87,7 @@ for vtk_file in sorted(vtk_files2, key=filename_to_time):
         # Total magnetic energy for this timestep
         total_energy = simps(bdoty, dx=dz)
         total_magnetic_energy2.append(total_energy)
+times = []  
 
 for vtk_file in sorted(vtk_files3, key=filename_to_time):
     time = filename_to_time(vtk_file)
@@ -109,6 +111,7 @@ for vtk_file in sorted(vtk_files3, key=filename_to_time):
         # Total magnetic energy for this timestep
         total_energy = simps(bdoty, dx=dz)
         total_magnetic_energy3.append(total_energy)
+times = []  
 
 for vtk_file in sorted(vtk_files4, key=filename_to_time):
     time = filename_to_time(vtk_file)
