@@ -22,7 +22,7 @@ def filename_to_time(filename):
     match = re.search(r'combined_(\d+).vtk', filename)
     if match:
         # Convert the timestep number to an integer, then to real time
-        time_step = 0.01
+        time_step = 0.02
         return int(match.group(1)) * time_step
     else:
         return None
