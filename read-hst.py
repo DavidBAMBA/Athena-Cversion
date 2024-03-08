@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-path_hitory = '/home/yo/Documents/Athena-Cversion/bin/output_combined/2Dks-sala2.hst'
+path_hitory = '/home/yo/Documents/Athena-Cversion/results/results-ATHV3/2Dks.hst'
 path_csv = '/home/yo/Documents/Athena-Cversion/bin/history-sala2.csv'
 
 with open(path_hitory, 'r') as hst_file:
