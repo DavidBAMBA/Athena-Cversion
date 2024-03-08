@@ -2,7 +2,7 @@
 problem = 2D kruskal-Schwarzschild instability
 author  = 
 journal = 
-config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=hlld --enable-special-relativity
+config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=hlld --enable-special-relativity --enable-mpi
 
 
 <job>
@@ -63,7 +63,7 @@ out_fmt = vtk
 dt      = 9.0
 type    = slice
 out     = velocity
-id      = velocity
+id      = vel
 dmin    = 1.0e-8
 dmax    = 100.0
 palette = rainbow
@@ -137,8 +137,8 @@ x3max           = 0.05       # maximum value of X3
 bc_ix3          = 4         # inner-I (X3) boundary flag
 bc_ox3          = 4         # outer-I (X3) boundary flag
 
-NGrid_x1 = 8   # Esto dividirá la malla en 4 bloques en la dirección x1
-NGrid_x2 = 2
+NGrid_x1 = 32   # Esto dividirá la malla en 4 bloques en la dirección x1
+NGrid_x2 = 4
 
 
 <problem>

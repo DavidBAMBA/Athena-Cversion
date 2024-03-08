@@ -12,13 +12,10 @@ static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j,
 static Real hst_ThermalEnergy(const GridS *pG, const int i, const int j, const int k);
 static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k);
 static Real hst_Lorentz2(const GridS *pG, const int i, const int j, const int k);
+static Real hst_Lorentz3(const GridS *pG, const int i, const int j, const int k);
 
 static Real P_rho(const GridS *pG, const int i, const int j, const int k);
 static Real magnetization(const GridS *pG, const int i, const int j, const int k);
-
-
-
-
 
 /*------------------------------------------------------*/
 /* Problem Setup */
@@ -97,8 +94,9 @@ void problem(DomainS *pDomain) {
  *  * Use special boundary condition routines.  In 2D, gravity is in the
  *   * y-direction, so special boundary conditions needed for x2
  *   */
-  dump_history_enroll(hst_Lorentz1, "<Gam-p>");
-  dump_history_enroll(hst_Lorentz2, "<Gam-C>");
+  dump_history_enroll(hst_Lorentz1, "<Gam-1>");
+  dump_history_enroll(hst_Lorentz1, "<Gam-2>");
+  dump_history_enroll(hst_Lorentz3, "<Gam-3>");
   dump_history_enroll(hst_ThermalEnergy, "<Uth>");
   dump_history_enroll(hst_MagneticEnergyDensity, "<Ub>");
 
@@ -164,7 +162,7 @@ void Userwork_after_loop(MeshS *pM)
 
 static Real grav_pot2(const Real x1, const Real x2, const Real x3)
 {
-  return 0.01*x2;
+  return 0.1*x2;
 }
 
 static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k)
@@ -172,6 +170,18 @@ static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k)
   PrimS W;
   W = Cons_to_Prim (&(pG->U[k][j][i]));
   Real lorentz_factor = pG->U[k][j][i].d/W.d;
+
+  return lorentz_factor;
+}
+
+static Real hst_Lorentz3(const GridS *pG, const int i, const int j, const int k)
+{
+  Real v1 = pG->U[k][j][i]. M1/pG->U[k][j][i].d;
+  Real v2 = pG->U[k][j][i]. M2/pG->U[k][j][i].d;
+  Real v3 = pG->U[k][j][i]. M3/pG->U[k][j][i].d;
+  Real Vsq = SQR(v1) + SQR(v2) + SQR(v3);
+
+  Real lorentz_factor = Real g = 1.0 / sqrt( 1.0 - v_squared );
 
   return lorentz_factor;
 }
@@ -203,8 +213,6 @@ static Real hst_MagneticEnergyDensity(const GridS *pG, const int i, const int j,
 
     return U_b;
 }
-
-
 
 
 static Real P_rho(const GridS *pG, const int i, const int j, const int k)
