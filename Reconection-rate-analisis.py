@@ -152,7 +152,7 @@ plt.plot(times[:-1], -energy_dissipation_rate3*2, color='g', label='g = 0.1 \n K
 plt.plot(times[:-1], -energy_dissipation_rate4*2, label='g = 0.1 \n K_v 0 10e-6,  m0 = 10')
 plt.xlabel('Time')
 plt.yscale('log')
-plt.xscale(10e-6,10e-1)
+plt.ylim(0.000001, 0.1)
 plt.ylabel('Magnetic Energy Dissipation Rate')
 plt.legend()
 plt.show()
