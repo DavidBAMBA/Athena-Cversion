@@ -162,7 +162,7 @@ void Userwork_after_loop(MeshS *pM)
 
 static Real grav_pot2(const Real x1, const Real x2, const Real x3)
 {
-  return 0.1*x2;
+  return 100.0*x2;
 }
 
 static Real hst_Lorentz1(const GridS *pG, const int i, const int j, const int k)
@@ -181,7 +181,7 @@ static Real hst_Lorentz3(const GridS *pG, const int i, const int j, const int k)
   Real v3 = pG->U[k][j][i]. M3/pG->U[k][j][i].d;
   Real Vsq = SQR(v1) + SQR(v2) + SQR(v3);
 
-  Real lorentz_factor = Real g = 1.0 / sqrt( 1.0 - v_squared );
+  Real lorentz_factor = 1.0 / sqrt( 1.0 - Vsq );
 
   return lorentz_factor;
 }

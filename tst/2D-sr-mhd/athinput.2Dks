@@ -7,7 +7,7 @@ config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=h
 
 <job>
 problem_id      = 2Dks      # problem ID: basename of output filenames
-maxout          = 10         # Output blocks number from 1 -> maxout
+maxout          = 2         # Output blocks number from 1 -> maxout
 num_domains     = 1         # number of Domains in Mesh
 
 <output1>
@@ -17,10 +17,11 @@ dt      = 0.01
 
 <output2>
 out_fmt = vtk
-dt      = 9.0
+dt      = 1.0
 type    = slice
-out     = d
-id      = d9
+out     = Bsqr
+id      = Bsqr
+usr_expr_flag = 1
 dmin    = 1.0e-8
 dmax    = 100.0
 palette = rainbow
@@ -144,9 +145,9 @@ NGrid_x2 = 4
 <problem>
 gamma = 1.333333333333     # gamma = C_p/C_v
 
-amp   = 9.5346e-7    #v1=vakv
+amp   = 9.5346e-8    #v1=vakv
 sigma = 10.0
 delta = 0.01
-nx    = 1
+nx    = 10
 ny    = 1
 nz    = 1
