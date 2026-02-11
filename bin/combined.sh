@@ -27,7 +27,7 @@ for ((file_number=0; file_number<=total_files; file_number++)); do
     fi
 
     # Ahora, añadir los otros archivos que siguen un patrón diferente
-    for ((dir_num=1; dir_num<=13; dir_num++)); do
+    for ((dir_num=1; dir_num<=31; dir_num++)); do
         file="id${dir_num}/2Dks-id${dir_num}.${file_index}.${var}.vtk"
         if [ -f "$file" ]; then
             temp_file_list+=("$file")

@@ -2,7 +2,7 @@
 problem = 2D kruskal-Schwarzschild instability
 author  = 
 journal = 
-config  = --with-problem=2Dks --with-integrator=vl --with-order=3p --with-flux=hlld --enable-special-relativity --enable-mpi
+config  = --with-problem=KSI --with-integrator=vl --with-order=3p --with-flux=hlld --enable-special-relativity --enable-mpi
 
 
 <job>
@@ -17,12 +17,11 @@ dt      = 0.01
 
 <output2>
 out_fmt = vtk
-dt      = 1.0
+dt      = 0.01
 type    = slice
-out     = Bsqr
-id      = Bsqr
-usr_expr_flag = 1
-dmin    = 1.0e-8
+out     = d
+id      = d
+dmin    = 1.0e-5
 dmax    = 100.0
 palette = rainbow
 
@@ -37,79 +36,6 @@ dmin    = 1.0e-8
 dmax    = 100.0
 palette = rainbow
 
-
-<output4>
-out_fmt = vtk
-dt      = 9.0
-type    = slice
-out     = mag
-id      = mag
-usr_expr_flag = 1
-dmin    = 1.0e-8
-dmax    = 100.0
-palette = rainbow
-
-<output5>
-out_fmt = vtk
-dt      = 9.0
-type    = slice
-out     = B3c
-id      = BX
-dmin    = 1.0e-8
-dmax    = 100.0
-palette = rainbow
-
-<output6>
-out_fmt = vtk
-dt      = 9.0
-type    = slice
-out     = velocity
-id      = vel
-dmin    = 1.0e-8
-dmax    = 100.0
-palette = rainbow
-
-<output7>
-out_fmt = vtk
-dt      = 0.01
-type    = slice
-out     = d
-id      = d
-dmin    = 1.0e-5
-dmax    = 100.0
-palette = rainbow
-
-
-<output8>
-out_fmt = vtk
-dt      = 0.01
-type    = slice
-out     = G
-id      = G
-dmin    = 1.0e-8
-dmax    = 100.0
-palette = rainbow
-
-<output9>
-out_fmt = vtk
-dt      = 9.0
-type    = slice
-out     = V2
-id      = vz
-dmin    = 1.0e-5
-dmax    = 100.0
-palette = rainbow
-
-<output10>
-out_fmt = vtk
-dt      = 0.01
-type    = slice
-out     = Bsqr
-id      = Bsqr
-usr_expr_flag = 1
-dmin    = 1.0e-8
-dmax    = 1e5
-palette = rainbow
 
 
 <time>
@@ -138,16 +64,16 @@ x3max           = 0.05       # maximum value of X3
 bc_ix3          = 4         # inner-I (X3) boundary flag
 bc_ox3          = 4         # outer-I (X3) boundary flag
 
-NGrid_x1 = 32   # Esto dividirá la malla en 4 bloques en la dirección x1
+NGrid_x1 = 4   # 4 x 4 = 16 procesos
 NGrid_x2 = 4
 
 
 <problem>
 gamma = 1.333333333333     # gamma = C_p/C_v
 
-amp   = 9.5346e-8    #v1=vakv
+amp   = 9.5346e-7    #v1=vakv
 sigma = 10.0
 delta = 0.01
-nx    = 10
+nx    = 1
 ny    = 1
 nz    = 1

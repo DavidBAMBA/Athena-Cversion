@@ -1,0 +1,67 @@
+<comment>
+problem = 3D kruskal-Schwarzschild instability
+author  =
+journal =
+config  = --with-problem=KSI --with-integrator=vl --with-order=3p --with-flux=hlld --enable-special-relativity --enable-mpi
+
+
+<job>
+problem_id      = 3Dks      # problem ID: basename of output filenames
+maxout          = 2         # Output blocks number from 1 -> maxout
+num_domains     = 1         # number of Domains in Mesh
+
+<output1>
+out_fmt = hst               # History data dump
+dt      = 0.01
+
+
+<output2>
+out_fmt = vtk
+dt      = 0.1
+out     = d
+id      = d
+dmin    = 1.0e-5
+dmax    = 100.0
+palette = rainbow
+
+
+<time>
+cour_no         = 0.5      # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim            = 200000    # cycle limit
+tlim            = 10.0      # time limit
+
+
+<domain1>
+level           = 0         # refinement level this Domain (root=0)
+Nx1             = 256       # Number of zones in X1-direction
+x1min           = -0.05     # minimum value of X1
+x1max           = 0.05      # maximum value of X1
+bc_ix1          = 4         # periodic (X1)
+bc_ox1          = 4         # periodic (X1)
+
+Nx2             = 512       # Number of zones in X2-direction (gravity direction)
+x2min           = -0.1      # minimum value of X2
+x2max           = 0.1       # maximum value of X2
+bc_ix2          = 1         # reflecting (X2)
+bc_ox2          = 1         # reflecting (X2)
+
+Nx3             = 256       # Number of zones in X3-direction
+x3min           = -0.05     # minimum value of X3
+x3max           = 0.05      # maximum value of X3
+bc_ix3          = 4         # periodic (X3)
+bc_ox3          = 4         # periodic (X3)
+
+NGrid_x1 = 4   # 4 x 4 x 4 = 64 procesos
+NGrid_x2 = 4
+NGrid_x3 = 4
+
+
+<problem>
+gamma = 1.333333333333     # gamma = C_p/C_v
+
+amp   = 9.5346e-7    #v1=vakv
+sigma = 10.0
+delta = 0.01
+nx    = 1
+ny    = 1
+nz    = 1
